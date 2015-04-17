@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html><head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Web Application Security Working Group</title>
+    <link rel="stylesheet" href="Web%20Application%20Security%20Working%20Group_files/w3cdoc.css" type="text/css" media="screen">
+    <link rel="stylesheet" type="text/css" href="Web%20Application%20Security%20Working%20Group_files/pubrules-style.css">
+    <link rel="stylesheet" type="text/css" href="Web%20Application%20Security%20Working%20Group_files/charter-style.css">
+  </head>
+  <body>
+    <div id="template"><ul id="navbar" style="font-size: small"><li><a href="#scope">Scope</a></li><li><a href="#deliverables">Deliverables</a></li><li><a href="#coordination">Dependencies and Liaisons</a></li><li><a href="#participation">Participation</a></li><li><a href="#communication">Communication</a></li><li><a href="#decisions">Decision Policy</a></li><li><a href="#patentpolicy">Patent 
+      Policy</a></li><li><a href="#about">About this Charter</a></li></ul>
+    
+
+    <p><a href="http://www.w3.org/" shape="rect"><img alt="W3C" src="Web%20Application%20Security%20Working%20Group_files/w3c_home.png" height="48" width="72"></a><a class="domainlogo" href="http://www.w3.org/TandS/" shape="rect"><img src="Web%20Application%20Security%20Working%20Group_files/tands.png" alt="Technology and Society Domain"></a></p>
+
+    <h1 id="title">ウェブアプリケーションセキュリティワーキンググループ憲章</h1>
+
+
+    <p class="mission"><a href="http://www.w3.org/Security/">セキュリティアクティビティ</a>の一環である<a href="http://www.w3.org/2011/webappsec/">ウェブアプリケーションセキュリティワーキンググループ</a>の<strong>ミッション</strong>は、ウェブアプリケーションのセキュリティを向上するセキュリティとポリシーメカニズムを開発すること及び安全なクロスオリジン通信を実現することである。</p>
+
+    <div class="noprint">
+    <p class="join"><a href="http://www.w3.org/2004/01/pp-impl/49309/join">ウェブアプリケーションセキュリティワーキンググループに参加しましょう。</a>.</p>
+    </div>
+
+    <table class="summary-table">
+      <tbody><tr id="Duration"><th rowspan="1" colspan="1">終了日</th>
+        <td rowspan="1" colspan="1">2016年3月31日</td>
+      </tr>
+      <tr><th rowspan="1" colspan="1">秘密区分</th>
+        <td rowspan="1" colspan="1">議事は <a href="http://www.w3.org/2005/10/Process-20051014/comm.html#confidentiality-levels" shape="rect">
+        公開
+        </a></td>
+      </tr>
+      <tr><th rowspan="1" colspan="1">チェア</th>
+        <td rowspan="1" colspan="1">Brad Hill, Dan Veditz</td>
+      </tr>
+      <tr><th rowspan="1" colspan="1">チームの連絡先<br>
+        (FTE %: 10)</th>
+        <td rowspan="1" colspan="1">Wendy Seltzer</td>
+      </tr>
+      <tr><th rowspan="1" colspan="1">通常のミーティングのスケジュール</th>
+        <td rowspan="1" colspan="1">電話会議：隔週
+           <br>
+        フェースツーフェース：年に1-2回
+           </td>
+         </tr>
+       </tbody></table>
+
+    <div class="scope">
+      <h2 id="scope">スコープ</h2>
+
+      <p>現在のウェブアプリケーションは多くの部品と技術によって構成されている。それらはトランスクルード（コピーせずに引用すること）や参照が行われたり、同じか関係のあるあるいは異なるオリジンとの間で情報の流れを持つことがある。歴史的経緯によるおおまかなセキュリティ境界とそのようなアプリケーションで定義されたプリンシパル（principals）のためにこれらを安全にすることは容易ではない。</p>
+
+      <p>特にアプリケーションの作者は統一的なポリシーメカニズムによってアプリケーションのコンポーネントの権限を限定することによって、攻撃を受けることやその攻撃により他のコンテンツに被害をもたらしたりする危険を減らしたり、同じセキュリティ領域に存在する他のコンテンツの脆弱性から隔離したり、セキュリティ領域を超えて安全に通信を行うことを望んでいる。
+          
+          これらの問題は他のアプリケーションリソースを活用する（マッシュアップ）多くのウェブアプリケーションに特に関係がある。それは複数のオリジンを攻撃することによって発生する。（例：セキュリティプリンシパル）</p>
+
+      <p>このワーキンググループのスコープは次を含む：</p>
+
+      <dl>
+
+        <dt><b>アタックサーフェスの限定</b></dt>
+        <dd>
+            <p>このWGはアプリケーションが以下を実現するためのメカニズムを設計する:
+            </p><ul>
+                <li>意図せず潜在的に危険な機能を使用することを制限または禁止する。</li>
+                <li>アプリケーションに対する情報とコンテンツのフローを統括する。</li>
+                <li>関係のない脆弱性を含む可能性のある他のコンテンツから隔離する。</li>
+                <li>潜在的に信頼できないコンテンツをサンドボックス化しそれらがより安全なインタラクションを行えるようにする。</li>
+                <li>不正な変更を発見防止するためにアプリケーションコンテンツをユニークに特定する。</li>
+            </ul>
+            <p></p>
+        </dd>
+
+        <dt><b>安全なマッシュアップ</b></dt>
+        <dd>
+            <p>リソースの安全な共有やオリジンを超えたメッセージングを行うためのいくらかのメカニズムが存在または検討されている。しかし、以下に示すいくらかの一般的あるいは望ましいユースケースが既存のものには含まれていない。
+                </p><ul>
+                    <li>IFRAMEの子供をクリックジャッキングから保護する</li>
+                    <li>安全なマッシュアップを可能とするラベル付けされた情報のフロー及び制限に関する属性。これは異なるユーザー権限を持つセキュリティプリンシプルの間で通信を行うようなアプリケーションと関係がある。</li>
+                </ul>
+            <p></p>
+        </dd>
+
+        <dt><b>管理容易性</b></dt>
+        <dd>
+            <p>ウェブの発展過程における多くの重要なセキュリティ機能がアドホックな形で生まれてきたことにより、開発者が利用者に対して統一されたセキュリティ機能のエクスペリエンス（経験）を提供することは難しい。このWGでは以下を含む主要な機能の未定義な領域について　文書及び統一したエクスペリエンス（経験）を作成する。
+                </p><ul>
+                    <li>Mixed HTTPS/HTTPコンテンツの扱い、ユーザーエキスペリエンスやコンテンツの挿入・トランスクルージョン等情報のフローのためのセキュアな/認証済オリジンの定義、セキュアな環境を確認するための機能</li>
+                    <li>ユーザーエージェントに統合あるいはサードパーティーの提供よる、ユーザーによる安全なパスワードの管理を支援するクレデンシャルマネージャーに対する直接または間接的なサポートの提供</li>
+                    <li>ユーザーによる明示的なパーミッションを求めるべき機能についてのアプリケーションアウェアネス</li>
+                </ul>
+            <p></p>
+        </dd>
+
+      </dl>
+
+      <p>これらの目的を達成するためのRecommendation Track の文書を作成することに加えウェブアプリケーションセキュリティワーキンググループは他のワーキンググループからの仕様についてレビューを行うことがある（それらの仕様がこのグループの成果物−特にCSP−、あるいはウェブセキュリティモデルに関連する場合は特に）。また標準に対するデベロッパー及びユーザーガイドなどウェブセキュリティを支援するための非公式（non-normative）な文書を作成することもある。</p>      
+      
+      <h3>成功の基準</h3>
+    
+      <p>Proposed Recommendation（提案された勧告）とするためには、各仕様で記述された各機能について２つの独立した実装が行われることが期待される。</p>      
+
+    </div>
+
+    <div>
+      <h2 id="deliverables">成果物</h2>
+      
+      <p>以下の全ての成果物は勧告トラック(Recommendation Track)にあるか勧告トラックに提案されている。</p>
+
+      <dl>
+
+        <dt><b>
+          <a href="http://www.w3.org/TR/CSP2/">コンテンツセキュリティポリシーレベル２</a> (CR)<br>
+          コンテンツセキュリティポリシーネクスト(ED)</b>
+        </dt>
+
+        <dd>
+          <p>ウェブデザイナーまたはサーバー管理者がウェブリソースに関するセキュリティポリシーを宣言するためのポリシー言語。この仕様の目的は、どのコンテンツが何をして良いのかあるいはいけないのかなどの全体的なルールを定義しアタックサーフェスを減少させることによって、コンテンツを部分的に操作できる攻撃者によるセキュリティ侵害を防止することである。コンテンツセキュリティポリシーレベル２はCSP 1.0の後継であり、Level 2が候補(Candidate)から完全の勧告（Recommendation）に進む間、.今後WGノートのステータスに移行しWGは追加の機能について作業を行う。</p>
+        </dd>
+
+				
+        <dt><b>コンテンツセキュリティポリシー・ピニング</b></dt>
+
+        <dd> 
+					<p>
+					作成者がユーザーエージェントに対して特定のホスト群について一定の期間コンテンツセキュリティポリシーを固定（ピン）し強制させるための新しいHTTPヘッダーを定義する。
+					</p>
+        </dd>
+
+
+        <dt><b><a href="http://www.w3.org/TR/UISecurity/">
+        コンテンツセキュリティポリシーのためのユーザーインターフェースセキュリティディレクティブ</a> (LCWD)</b></dt>
+
+        <dd>
+          <p>クロスドメインのフレーム構成によってセキュアなマッシュアップアプリケーションを構築することを可能とすることを目的に双方向の親子関係にあるポリシーの定義について作成または既存の勧告（Recommendation）を改善する。現在CSP、HTML5 IFRAMEサンドボックス及びX-Frame-Options HTTPヘッダーにわたり表現と実装において分離されている要求事項のためのセマンティクスを統一する目的とともに、必要な制約と要求事項を表現するために、この成果物はコンテンツセキュリティポリシーの成果物であるポリシー言語をを再利用し拡張する。この取り組みは仕様の重複とコンフリクトを回避するためIETF websec WGと密接に連携をとりながら実施する。</p>
+        </dd>
+    
+        <dt>
+          <b><a href="http://www.w3.org/TR/mixed-content/">ミクスドコンテント</a> (LCWD)</b>
+        </dt>
+
+        <dd> <p>セキュアなウェブアプリケーションにおいてセキュアではないチャネルを通じてロードされたリソースに関する扱いに関する勧告(recommendation)。ユースケースにはセキュアなコンテンツにセキュアではないリソースがロードされる状況においてユーザーエージェントが従うべき標準的なふるまいが含まれる。またこれはブロックすべきか警告とともにロードしてもよい「アクティブ」あるいは「パッシブ」なコンテンツの定義を含む。また、セキュアなアプリケーションがセキュアではないがセンシティブでもないリソース（天気に関するフィードなど）を取り入れる方法も含まれる。
+        </p></dd>
+
+        <dt><b>アップグレードインセキュアリクエスト</b></dt>
+
+        <dd> 
+					<p>
+					ユーザーエージェントに対してサイトがセキュアなリソースのみロードし、セキュアでないURLはセキュアなURLと取り替えられたように取り扱う意図を宣言することでHTTPからHTTPSに移行することを支援するメカニズムを作成する。この機能は独立した一つの勧告（recommendation）もしくはミクスドコンテントのアップデートのいずれかの形で成果物とされる。
+					</p>
+        </dd>
+
+
+				<dt>
+          <b><a href="http://www.w3.org/TR/powerful-features/">特権的コンテキスト</a> (FPWD)</b>
+        </dt>
+
+        <dd> <p>センシティブな個人情報にアクセスが必要になった場合など必要に応じて特権的なコンテキストを自己指定する機能に関する勧告（recommendation）。
+　この勧告（recommendation）は、ある機能がどのような時にセキュアなコンテンツへのアクセスを要求しコンテキストに対する特権を提供するかを決定するための標準的なアルゴリズムを提供する。この取り組みはW3Cテクニカルアーキテクチャグループとの共同の成果物となる。
+	    </p>
+        </dd>
+
+        <dt>
+          <b><a href="http://www.w3.org/TR/SRI/">サブリソースインテグリティ</a> (FPWD)</b>
+        </dt>
+
+        <dd> <p>セキュアなウェブアプリケーションにロードされたユニークに特定されるリソースについて潜在的な不正な改ざんを発見もしくは防止するための勧告（recommendation）。ユースケースにはHTML文書から読み込まれるサブリソースのインテグリティ保護などが含まれる。このメカニズムはリソースの作成者がクロスオリジンのサブリソースの正確なハッシュ値を指定することを可能とする。将来的な機能としてはコンテンツを意識したキャッシュ、安全ではない通信経路の利用、適切なプライバシーとセキュリティの保障などを
+通じたリソースの楽観的なロードを含む可能性がある。この取り組みはHTML WGとの協力によって行われ共同の成果物となる可能性がある。
+        </p></dd>
+        
+        <dt>
+          <b><a href="http://www.w3.org/TR/referrer-policy/">リファラーポリシー </a> (FPWD)</b>
+        </dt>
+
+        <dd> <p>リソースの作成者がHTTP Referer(sic)ヘッダーの一部として送信する値を指定することを可能とするヘッダー及びメタタグに関する勧告（recommendation）である。ユースケースには、セキュリティトークンを含むURLのようなアプリケーションを保護するためにこのポリシーをより制限の強いものとすることが含まれる。また、今日アプリケーションがセキュアなオリジンに移行することの妨げを除くため、セキュアからインセキュアなオリジンに対するよりReferer情報のより寛容な共有を可能とする。</p>
+        </dd>        
+
+        <dt><b>クレデンシャルマネジメントAPI</b></dt>
+
+        <dd> 
+          <p>ユーザーのクレデンシャル管理のユースケースに関する標準的なAPIについての勧告（recommendation）を作成・発展させる。このクレデンシャルには、従来からあるユーザーネームとパスワード、ユーザーネームとフェデレイテッド・アイデンティティ・プロバイダーなどが含まれる。このAPIはこれら一般的なクレデンシャルの形態の利用及びライフサイクルの管理について明示的かつ相互利用可能な重要なメカニズムを提供する。</p> 
+        </dd>
+
+        <dt><b>サブオリジンネームスペース</b></dt>
+
+        <dd> 
+          <p>アプリケーションが従来のスキーム/ホスト/ポート RFC6454 オリジンラベル名前空間上に自身を定義することにより容易なモジュラーアプリケーションの開発を権限の分離とともに可能とするための勧告（recommendation）を作成・発展させる。</p> 
+        </dd>
+        
+        <dt><b>オリジンウェブラベルによる制限</b></dt>
+
+        <dd> 
+		<p>過去のウェブコンテンツとの後方互換性を保ちながらモダンなウェブブラウザーのためのロバストなJavaScriptの制限システムに関する勧告（recommendation）を作成し発展させる。適合したユーザエージェントは、クロスサイトスクリプティングとクロスサイトリクエストフォージェリに対するアタックサーフェスを減少させる。</p>
+
+		<p>追加のゴールとしてライトウェイトでスレッド内で動作するWev Workerの定義がある。これにちょって開発者は権限を分離した隔離されたアプリケーションを開発することが可能となる。</p>
+        </dd>
+
+        <!--
+        <dt><b>Lightweight Isolated / Safe Content</b></dt>
+
+        <dd> 
+          <p>Create and advance recommendation(s) for lightweight isolation
+          and safety mechanisms for composed web applications. An iframe used with
+          postMessage can provide a strong isolation barrier, but, for some scenarios, requires
+          too many resources on the client and presents an unfriendly API to
+          developers.  The deliverable(s) will describe
+          mechanisms to compose applications from imported components while
+          isolating the application from malicious impacts of those
+          components in a backwards-compatible manner.</p> 
+        </dd>
+        -->
+
+        <dt><b>ウェブアプリケーションのためのエントリーポイントレギュレーション</b></dt>
+
+        <dd> 
+          <p>ウェブアプリケーションがヘッダーとポリシーマニフェストの組み合わせによってエントリーポイントを指定することを可能とする勧告（recommendation）を作成・発展させる。適合したユーザエージェントは、このポリシーにに基づいて外部のナビゲーションとアプリケーションに対する他の情報フローを制限し、クロスサイトスクリプティングとクロスサイトリクエストフォージェリに対するアタックサーフェスを減少させる。
+            </p> 
+						<p>セキュリティ以外での理由での深いリンクの制限することは本成果物のゴールではない。またこのためにリソースのオーナーに対してウェブプラットフォームに関する従来の権限を超えた機能を提供すべきではない。（例）限定的なスケールのウェブアプリケーションファイアウォールなどを使用してすでに実現可能なものを補足するクライアントサイドの状態を用いた、単純な展開機能の提供。ウェブプラットフォームにおけるリンク機能を維持することは優先される。
+        </p></dd>
+
+        <dt><b>パーミッションAPI</b></dt>
+
+        <dd> 
+          <p>ウェブアプリケーションが許可、拒否、ユーザーへの確認が必要など与えられたパーミッションの状態を認識する機能を提供するための勧告（recommendation）を作成・発展させる。この勧告はユーザーエージェントのスコープ、期間、粒度、表示や設定、パーミンッションの確認のためのユーザーインタフェースやエキスペリエンスなどパーミッションの実装について指定するものではない。
+</p> 
+        </dd>
+      </dl>
+    
+
+    <h3>マイルストーン</h3>
+        
+    
+        <table class="roadmap" width="80%">
+          <tfoot>
+            <tr>
+              <td colspan="6" rowspan="1">注意：上記当初のスケジュールから大きな変更があった場合にはグループホームページに記載する。</td>
+            </tr>
+          </tfoot>
+          <tbody>
+            <tr>
+              <th rowspan="1" colspan="1">仕様</th>
+              <th rowspan="1" colspan="1"><acronym title="First Working Draft">FPWD</acronym></th>
+              <th rowspan="1" colspan="1"><acronym title="Last Call Working Draft">LC</acronym></th>
+              <th rowspan="1" colspan="1"><acronym title="Candidate Recommendation">CR</acronym></th>
+              <th rowspan="1" colspan="1"><acronym title="Proposed Recommendation">PR</acronym></th>
+              <th rowspan="1" colspan="1"><acronym title="Recommendation">Rec</acronym></th>
+            </tr>
+
+            <tr>
+              <th rowspan="1" colspan="1">コンテンツセキュリティポリシーレベル2<br>
+              </th>
+              <td class="WD1" rowspan="1" colspan="1"><br>
+              </td>
+              <td class="LC" rowspan="1" colspan="1"><br>
+              </td>
+              <td class="CR" rowspan="1" colspan="1">February 2015<br>
+              </td>
+              <td class="PR" rowspan="1" colspan="1">April 2015<br>
+              </td>
+              <td class="REC" rowspan="1" colspan="1">May 2015<br>
+              </td>
+            </tr>
+
+            <tr>
+              <th rowspan="1" colspan="1">コンテンツセキュリティポリシーネキスト<br>
+              </th>
+              <td class="WD1" rowspan="1" colspan="1">December 2014</td>
+              <td class="LC" rowspan="1" colspan="1">October 2015</td>
+              <td class="CR" rowspan="1" colspan="1">December 2015</td>
+              <td class="PR" rowspan="1" colspan="1">March 2016</td>
+              <td class="REC" rowspan="1" colspan="1">July 2016</td>
+            </tr>
+
+            <tr>
+              <th rowspan="1" colspan="1">コンテンツセキュリティポリシーのためのユーザーインターフェースセキュリティディレクティブ<br>
+              </th>
+              <td class="WD1" rowspan="1" colspan="1"></td>
+              <td class="LC" rowspan="1" colspan="1"></td>
+              <td class="CR" rowspan="1" colspan="1">July 2015</td>
+              <td class="PR" rowspan="1" colspan="1">October 2015</td>
+              <td class="REC" rowspan="1" colspan="1">December 2015</td>
+            </tr>
+
+            <tr>
+              <th rowspan="1" colspan="1">ミクスドコンテント<br>
+              </th>
+              <td class="WD1" rowspan="1" colspan="1"></td>
+              <td class="LC" rowspan="1" colspan="1">November 2014</td>
+              <td class="CR" rowspan="1" colspan="1">January 2015</td>
+              <td class="PR" rowspan="1" colspan="1">March 2015</td>
+              <td class="REC" rowspan="1" colspan="1">August 2015 </td>
+            </tr>
+
+						<tr>
+              <th rowspan="1" colspan="1">特権的コンテキスト<br>
+              </th>
+              <td class="WD1" rowspan="1" colspan="1"></td>
+              <td class="LC" rowspan="1" colspan="1">November 2014</td>
+              <td class="CR" rowspan="1" colspan="1">January 2015</td>
+              <td class="PR" rowspan="1" colspan="1">March 2015</td>
+              <td class="REC" rowspan="1" colspan="1">August 2015 </td>
+            </tr>
+
+              
+            <tr>
+              <th rowspan="1" colspan="1">サブリソースインテグリティ<br>
+              </th>
+              <td class="WD1" rowspan="1" colspan="1"></td>
+              <td class="LC" rowspan="1" colspan="1">January 2015</td>
+              <td class="CR" rowspan="1" colspan="1">March 2015</td>
+              <td class="PR" rowspan="1" colspan="1">May 2015</td>
+              <td class="REC" rowspan="1" colspan="1">July 2015</td>
+            </tr>
+
+
+            <tr>
+              <th rowspan="1" colspan="1">リファラーポリシー<br>
+              </th>
+              <td class="WD1" rowspan="1" colspan="1"></td>
+              <td class="LC" rowspan="1" colspan="1">January 2015</td>
+              <td class="CR" rowspan="1" colspan="1">March 2015</td>
+              <td class="PR" rowspan="1" colspan="1">May 2015</td>
+              <td class="REC" rowspan="1" colspan="1">July 2015</td>
+            </tr>
+
+            <tr>
+              <th rowspan="1" colspan="1">クレデンシャルマネジメントAPI<br>
+              </th>
+              <td class="WD1" rowspan="1" colspan="1">January 2015</td>
+              <td class="LC" rowspan="1" colspan="1">May 2015</td>
+              <td class="CR" rowspan="1" colspan="1">August 2015</td>
+              <td class="PR" rowspan="1" colspan="1">October 2015</td>
+              <td class="REC" rowspan="1" colspan="1">December 2015</td>
+            </tr>
+
+            <tr>
+              <th rowspan="1" colspan="1">サブオリジンネームスペース<br>
+              </th>
+              <td class="WD1" rowspan="1" colspan="1">January 2015</td>
+              <td class="LC" rowspan="1" colspan="1">May 2015</td>
+              <td class="CR" rowspan="1" colspan="1">August 2015</td>
+              <td class="PR" rowspan="1" colspan="1">October 2015</td>
+              <td class="REC" rowspan="1" colspan="1">December 2015</td>
+            </tr>
+              
+            <tr>
+              <th rowspan="1" colspan="1">オリジンウェブラベルによる制限<br>
+              </th>
+              <td class="WD1" rowspan="1" colspan="1">January 2015</td>
+              <td class="LC" rowspan="1" colspan="1">May 2015</td>
+              <td class="CR" rowspan="1" colspan="1">August 2015</td>
+              <td class="PR" rowspan="1" colspan="1">October 2015</td>
+              <td class="REC" rowspan="1" colspan="1">December 2015</td>
+            </tr>  
+            
+            <tr>
+              <th rowspan="1" colspan="1">ウェブアプリケーションのためのエントリーポイントレギュレーション<br>
+              </th>
+              <td class="WD1" rowspan="1" colspan="1">January 2015</td>
+              <td class="LC" rowspan="1" colspan="1">May 2015</td>
+              <td class="CR" rowspan="1" colspan="1">August 2015</td>
+              <td class="PR" rowspan="1" colspan="1">October 2015</td>
+              <td class="REC" rowspan="1" colspan="1">December 2015</td>
+            </tr>  
+              
+            <tr>
+              <th rowspan="1" colspan="1">パーミッションAPI<br>
+              </th>
+              <td class="WD1" rowspan="1" colspan="1">January 2015</td>
+              <td class="LC" rowspan="1" colspan="1">May 2015</td>
+              <td class="CR" rowspan="1" colspan="1">August 2015</td>
+              <td class="PR" rowspan="1" colspan="1">October 2015</td>
+              <td class="REC" rowspan="1" colspan="1">December 2015</td>
+            </tr>  
+              
+          </tbody>
+        </table>
+      
+      
+    </div>
+    
+    <div class="dependencies">
+      <h2 id="coordination">依存関係</h2>
+      
+
+      
+  
+      <h3>W3Cグループ</h3>
+
+      <dl>
+          <dt><a href="http://www.w3.org/html/wg/">HTMLワーキンググループ</a></dt>
+          <dd><a href="http://www.w3.org/TR/html5/">HTML</a>仕様は現在のブラウザ環境に適用される多くのセキュリティポリシーを定義している。またサブリソースインテグリティはHTMLタグに適用される可能性のある新しい属性を定義する。</dd>
+           <dt><a href="http://www.w3.org/Privacy/">プライバシーインタレストグループ</a></dt>
+          <dd>本WGはプライバシーインタレストグループに対してプライバシーに関する配慮のための仕様についてレビューを依頼する可能性がある。</dd>
+          <dt><a href="http://www.w3.org/Security/wiki/IG">ウェブセキュリティインタレストグループ</a></dt>
+          <dd>本WGはウェブセキュリティインタレストグループに対してセキュリティに関する配慮のための仕様についてレビューを依頼する可能性がある。</dd>
+          <dt><a href="http://www.w3.org/2001/tag/">テクニカルアーキテクチャグループ 
+              (TAG)</a></dt>
+          <dd>本WGはテクニカルアーキテクチャグループに対して仕様についてレビューを依頼する可能性がある。</dd>
+            <dt><a href="http://www.w3.org/WAI/PF/">プロトコルとフォーマットワーキンググループ</a></dt>
+           <dd>本WGはプロトコルとフォーマットワーキンググループ（PFWG）に対してアクセシビリティに関する事項などについてレビューを依頼する可能性がある。</dd>
+	<dt><a href="http://www.w3.org/2008/webapps/">ウェブアプリケーションワーキンググループ</a></dt>
+	</dt><dd>本WGはAPIのデザインに関してウェブアプリケーションワーキンググループとの連携を行う可能性がある。</dd>
+	<dt><a href="http://www.w3.org/2011/tracking-protection/">トラッキングプロテクションワーキンググループ</a></dt>
+	<dd>本WGはリファラーポリシーを含む成果物についてトラッキングプロテクションワーキンググループのレビューを依頼する可能性がある。</dd>
+        </dl>
+
+        <h3>外部のグループ</h3>
+        <dl>
+    <dt><a href="http://tools.ietf.org/wg/websec/">IETF ウェブセキュリティ（WebSec）ワーキンググループ</a></dt>
+    <dd><a href="http://tools.ietf.org/wg/websec/">IETF ウェブセキュリティ（WebSec）ワーキンググループ</a>はウェブセキュリティに関する問題に関するステートメントを提供し限定された数の仕様について標準化を行うと宣言している。本ワーキンググループはこのWebSecワーキンググループと緊密に連携し協調するものと期待される。とりわけ本チャーターで提案されているセキュアクロスドメインフレーミングの成果物及びIETFでドキュメント化が進められている X-Frame-Optionsメカニズムに関して連携を行うことが期待される。 </dd>
+        
+    <dt><a href="https://whatwg.org/">ウェブハイパーテキストアプリケーションテクノロジーワーキンググループ(WHATWG)</a></dt>
+    <dd>CSPのような仕様は、フェッチスペシフィケーション及びCSPとミクスドコンテントの一部でフェッチに関して定義されるアルゴリズムに対するインプットを提供する。</dd>
+    </dl>
+
+  </div>
+  
+    <div class="participation">
+      <h2 id="participation">参加</h2>
+
+      
+
+      <p>ウェブアプリケーションセキュリティワーキンググループの成功のため期間中１０名以上の積極的な参加者が期待される。ウェブアプリケーションセキュリティワーキンググループへの効果的な参加は、チェアとエディタのための週に１日以上を費やすことが期待される。ウェブアプリケーションセキュリティワーキンググループは各仕様のテストスイートの構築に必要なリソースをを割り当てる。</p>
+    </div>
+
+    <div class="communication">
+      <h2 id="communication">コミュニケーション</h2>
+
+      
+  <p>本グループは主に公開のメーリングリスト public-webappsec@w3.org (<a href="http://lists.w3.org/Archives/Public/public-webappsec/">アーカイブ</a>)を用いて活動を行う。</p>
+      <p>グループに関する情報（成果物、参加者、フェースツーフェースミーティング、テレカンファレンス等）は<a href="http://www.w3.org/2011/webappsec/">ウェブアプリケーションセキュリティワーキンググループホームページ</a>で公開されている。</p>
+    </div>
+
+    <div class="decisions">
+      <h2 id="decisions">意思決定のポリシー</h2>
+
+      <p>プロセスドキュメント( (<a href="http://www.w3.org/Consortium/Process/policies#Consensus" shape="rect">section 3.3</a>)で説明されているように本グループはコンセンサスに基づき意思決定を行う。チェアが質問を提示し、異なる意見についての十分な検討の後に異議が唱えられた場合、チェアはグループ内での投票を行い（電子メールやウェブベースのサーベイ技術等を用いて遠隔での非同期の参加も認めつつ）、その決定を反対意見とともに記録すべきである。これによって新たな情報が届かない限りはその議題は解決されたと考えるべきである。</p>
+			
+			<p>フェースツーフェースまたはテレカンファレンス（例：これはメーリングリストにおける７日間のコールフォーコンセンサスのルールには従わない）によって提案されたあらゆる問題解決策については、それが記載されたドラフトがWGのカレンダーまたはホームページで公開されてから５営業日を経過するまではプロビジョナル（provisional）と考るべきではない。
+			</p>
+
+    </div>
+
+    <div class="patent">
+      <h2 id="patentpolicy">特許ポリシー</h2>
+
+      
+        <p>本ワーキンググループは<a href="http://www.w3.org/Consortium/Patent-Policy-20040205/" shape="rect">W3Cパテントポリシー</a>(2004年2月5日バージョン)に準拠する。ウェブ標準のより広い準拠を推進するためにW3Cは本ポリシーに基づきロイヤリティなしに実装が可能な勧告を発行することを目指している。</p>
+        <p>本グループの情報公開義務に関するさらなる情報については <a href="http://www.w3.org/2004/01/pp-impl/" shape="rect">W3C特許ポリシーの実装</a>を参照のこと。</p>
+    </div>
+
+    <h2 id="about">本チャーターについて</h2>
+
+    <p>ウェブアプリケーションセキュリティワーキンググループに関する本チャーターは<a href="http://www.w3.org/Consortium/Process" shape="rect">プロセスドキュメント</a>の<a href="http://www.w3.org/Consortium/Process/groups#GAGeneral" shape="rect">セクション6.2</a>に基づき作成された。本文書と他のチャーターやW3Cとの間でコンフリクトが生じた場合はW3Cのプロセスが優先される。</p>
+
+    <p>本グループに関する<a href="http://www.w3.org/2013/07/webappsec-charter.html">以前のチャーター</a>も参照すること。</p>
+    <hr>
+
+    <address>
+      Brad Hill, Dan Veditz, Wendy Seltzer &lt;<a href="mailto:wseltzer@w3.org">wseltzer@w3.org</a>&gt;
+    </address>
+
+    <p class="copyright"><a rel="Copyright" href="http://www.w3.org/Consortium/Legal/ipr-notice#Copyright" shape="rect">Copyright</a>©
+    2015 <a href="http://www.w3.org/" shape="rect"><acronym title="World Wide Web Consortium">W3C</acronym></a>
+    <sup>®</sup> (<a href="http://www.csail.mit.edu/" shape="rect"><acronym title="Massachusetts Institute of Technology">MIT</acronym></a>,
+    <a href="http://www.ercim.org/" shape="rect"><acronym title="European Research Consortium for Informatics and Mathematics">ERCIM</acronym></a>, <a href="http://www.keio.ac.jp/" shape="rect">Keio</a>, <a href="http://ev.buaa.edu.cn/" shape="rect">Beihang</a>), All Rights
+    Reserved.</p>
+  </div>
+</body></html>
